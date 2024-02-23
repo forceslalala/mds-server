@@ -1,0 +1,19 @@
+spring:
+  application:
+    # 应用名称，会在注册中心中显示
+    name: mds-user
+  cloud:
+    nacos:
+      discovery:
+        # 注册中心地址
+        server-addr: 127.0.0.1:8848
+        namespace: 43c60b06-f68e-4678-825b-80650f3f9af1
+      config:
+        #配置中心地址。
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        file-extension: yaml # 配置文件格式
+        namespace: 43c60b06-f68e-4678-825b-80650f3f9af1
+        extension-configs:
+          - data-id: mds-user.yaml
+            group: DEFAULT_GROUP
+            refresh: true
