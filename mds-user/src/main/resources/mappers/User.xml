@@ -4,11 +4,22 @@
     <resultMap id="User" type="com.forceslalala.mdsuser.entity.User">
         <id column="id" property="id" jdbcType="INTEGER"/>
         <result column="username" property="username" jdbcType="VARCHAR"/>
-        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="CHAR"/>
+        <result column="salt" property="salt" jdbcType="CHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="gender" property="gender" jdbcType="VARCHAR"/>
+        <result column="is_delete" property="isDelete" jdbcType="VARCHAR"/>
     </resultMap>
 
     <!--    select查询-->
     <select id="getUserList" resultMap="User">
         SELECT * FROM `user`
     </select>
+
+    <select id="getUserByUsername" resultMap="User">
+        SELECT * FROM `user` where `username` = #{username}
+    </select>
+
+
 </mapper>

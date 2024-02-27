@@ -17,4 +17,13 @@ public class User {
 
     private String password;
 
+    private String salt;
+
+    private String phone;
+
+    private String email;
+
+    private int gender;
+
+    private int isDelete;
 }

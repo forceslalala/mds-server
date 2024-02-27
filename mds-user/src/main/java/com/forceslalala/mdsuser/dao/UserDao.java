@@ -21,4 +21,10 @@ public interface UserDao {
      * @return
      */
     List<User> getUserList();
+
+    /**
+     * 根据用户名获取用户
+     * @return
+     */
+    User getUserByUsername(@Param("username") String username);
 }
