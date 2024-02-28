@@ -18,13 +18,21 @@ public interface UserDao {
 
     /**
      * 获取用户列表
-     * @return
      */
     List<User> getUserList();
 
     /**
      * 根据用户名获取用户
-     * @return
      */
     User getUserByUsername(@Param("username") String username);
+
+    /**
+     * 新增用户
+     */
+    int add(User user);
+
+    /**
+     * 根据id获取用户
+     */
+    User getById(Integer id);
 }

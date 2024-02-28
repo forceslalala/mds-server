@@ -1,14 +1,10 @@
 package com.forceslalala.mdsuser.service;
 
-import com.forceslalala.mdsuser.dao.UserDao;
 import com.forceslalala.mdsuser.entity.User;
-import com.forceslalala.mdsuser.entity.vo.Page;
-import com.github.pagehelper.PageHelper;
+import com.forceslalala.mdsuser.entity.vo.Result;
 import com.github.pagehelper.PageInfo;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import javax.servlet.http.HttpSession;
 
-import java.util.List;
 
 /**
  * @ClassName UserService
@@ -17,18 +13,26 @@ import java.util.List;
  * @Describe:
  */
 
-@Service
-public class UserService {
-
-    @Autowired
-    private UserDao userDao;
+public interface UserService {
 
     /**
      * 根据条件获取用户列表
      */
-    public PageInfo<User> getUsers(int pageNum, int pageSize) {
-        PageHelper.startPage(pageNum, pageSize);
-        List<User> list = userDao.getUserList();
-        return new PageInfo<>(list);
-    }
+    PageInfo<User> getUsers(int pageNum, int pageSize);
+
+    /**
+     * 用户登陆
+     */
+    Result<User> login(User user);
+
+    /**
+     * 用户注册
+     */
+    Result<User> register(User user);
+
+    /**
+     * 判断用户是否登录（实际上就是从session取出用户id去数据库查询并比对）
+     */
+    Result<User> isLogin(HttpSession session);
+
 }

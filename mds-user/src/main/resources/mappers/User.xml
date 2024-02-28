@@ -9,7 +9,6 @@
         <result column="phone" property="phone" jdbcType="VARCHAR"/>
         <result column="email" property="email" jdbcType="VARCHAR"/>
         <result column="gender" property="gender" jdbcType="VARCHAR"/>
-        <result column="is_delete" property="isDelete" jdbcType="VARCHAR"/>
     </resultMap>
 
     <!--    select查询-->
@@ -21,5 +20,12 @@
         SELECT * FROM `user` where `username` = #{username}
     </select>
 
+    <select id="getById" resultMap="User">
+        SELECT * FROM `user` where `id` = #{id}
+    </select>
 
+    <insert id="add" parameterType="com.forceslalala.mdsuser.entity.User">
+        insert into `user` (username, password, salt, phone, email, gender)
+        values (#{username}, #{password}, #{salt}, #{phone}, #{email}, #{gender})
+    </insert>
 </mapper>

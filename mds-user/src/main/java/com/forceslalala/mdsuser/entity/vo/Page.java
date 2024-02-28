@@ -1,5 +1,6 @@
 package com.forceslalala.mdsuser.entity.vo;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -16,29 +17,19 @@ import java.util.List;
 public class Page<T> implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    /**
-     * 总记录数
-     */
+    @ApiModelProperty(value = "总记录数")
     private long total = -1;
 
-    /**
-     * 当前页记录列表
-     */
+    @ApiModelProperty(value = "当前页记录列表")
     private List<T> records;
 
-    /**
-     * 当前页
-     */
+    @ApiModelProperty(value = "当前页码")
     private int pageNum;
 
-    /**
-     * 页面数据量
-     */
+    @ApiModelProperty(value = "页面数据量")
     private int pageSize;
 
-    /**
-     * 总页书
-     */
+    @ApiModelProperty(value = "总页数")
     private int pages;
 
     public Page() {
