@@ -6,7 +6,7 @@
         <groupId>com.forceslalala</groupId>
         <artifactId>mds-server</artifactId>
         <version>1.0</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath>../../mds-server/pom.xml</relativePath> <!-- 指向父POM的相对路径 -->
     </parent>
 
     <artifactId>mds-user</artifactId>
