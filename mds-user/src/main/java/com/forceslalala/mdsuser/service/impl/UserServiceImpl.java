@@ -78,27 +78,6 @@ public class UserServiceImpl implements UserService {
         return result;
     }
 
-    @Override
-    public Result<User> isLogin(HttpSession session) {
-        Result<User> result = new Result<>();
-        // 从session中取出用户信息
-        User sessionUser = (User) session.getAttribute(UserController.SESSION_NAME);
-        // 若session中没有用户信息这说明用户未登录
-        if (sessionUser == null) {
-            result.setResultFailed("用户未登录！");
-            return result;
-        }
-        // 登录了则去数据库取出信息进行比对
-        User getUser = userDao.getById(sessionUser.getId());
-        // 如果session用户找不到对应的数据库中的用户或者找出的用户密码和session中用户不一致则说明session中用户信息无效
-        if (getUser == null || !getUser.getPassword().equals(sessionUser.getPassword())) {
-            result.setResultFailed("用户信息无效！");
-            return result;
-        }
-        result.setResultSuccess("用户已登录！", getUser);
-        return result;
-    }
-
     // 生成盐值
     private String generateSalt(int length) {
         SecureRandom random = new SecureRandom();

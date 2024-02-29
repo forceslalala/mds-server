@@ -4,6 +4,7 @@ import com.forceslalala.mdsuser.entity.User;
 import com.forceslalala.mdsuser.entity.vo.Page;
 import com.forceslalala.mdsuser.entity.vo.Result;
 import com.forceslalala.mdsuser.service.UserService;
+import com.forceslalala.mdsuser.utils.TokenUtil;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.*;
 import jakarta.validation.Valid;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.validation.BindingResult;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -25,11 +28,6 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/api/v1/user")
 @Api(tags = "医院用户接口")
 public class UserController {
-
-    /**
-     * session的字段名
-     */
-    public static final String SESSION_NAME = "userInfo";
 
     @Autowired
     private UserService userService;
@@ -56,7 +54,7 @@ public class UserController {
 
     @PostMapping("/login")
     @ApiOperation(value = "登陆")
-    public Result<User> login(@RequestBody @Valid User user, BindingResult errors, HttpServletRequest request) {
+    public Object login(@RequestBody @Valid User user, BindingResult errors) {
         Result<User> result;
         if (errors.hasErrors()) {
             result = new Result<>();
@@ -65,9 +63,14 @@ public class UserController {
         }
         // 调用登录服务
         result = userService.login(user);
-        // 如果登录成功，则设定session
+        // 如果登录成功，则设定token
         if (result.isSuccess()) {
-            request.getSession().setAttribute(SESSION_NAME, result.getData());
+            String token = TokenUtil.sign(result.getData());
+            Map<String, Object> map = new HashMap<>();
+            map.put("message", result.getMessage());
+            map.put("success", result.isSuccess());
+            map.put("token", token);
+            return map;
         }
         return result;
     }
@@ -87,20 +90,4 @@ public class UserController {
         return result;
     }
 
-    @GetMapping("/isLogin")
-    @ApiOperation(value = "判断用户是否登陆")
-    public Result<User> isLogin(HttpServletRequest request) {
-        // 传入session到用户服务层
-        return userService.isLogin(request.getSession());
-    }
-
-    @GetMapping("/logout")
-    @ApiOperation(value = "用户退出登陆")
-    public Result<Void> logout(HttpServletRequest request) {
-        Result<Void> result = new Result<>();
-        // 用户登出很简单，就是把session里面的用户信息设为null即可
-        request.getSession().setAttribute(SESSION_NAME, null);
-        result.setResultSuccess("用户退出登录成功！");
-        return result;
-    }
 }

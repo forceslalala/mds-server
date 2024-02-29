@@ -30,9 +30,4 @@ public interface UserService {
      */
     Result<User> register(User user);
 
-    /**
-     * 判断用户是否登录（实际上就是从session取出用户id去数据库查询并比对）
-     */
-    Result<User> isLogin(HttpSession session);
-
 }
