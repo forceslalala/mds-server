@@ -1,5 +1,6 @@
 package com.forceslalala.mdsuser.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -22,6 +23,9 @@ import java.util.ArrayList;
 @EnableSwagger2
 public class SwaggerConfig {
 
+    @Value("${swagger.enable:true}")
+    private boolean swaggerEnable;
+
     // 创建swagger bean
     @Bean
     public Docket docket() {
@@ -29,7 +33,7 @@ public class SwaggerConfig {
                 // swagger信息
                 .apiInfo(apiInfo())
                 // 配置是否开启swagger，若为false，则浏览器不能访问
-                .enable(true)
+                .enable(swaggerEnable)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.forceslalala.mdsuser.controller"))
                 .build();

@@ -31,3 +31,7 @@ pagehelper:
   reasonable: true
   supportMethodsArguments: true
   params: count=countSql
+
+swagger:
+  # 配置swagger是否开启
+  enable: true
