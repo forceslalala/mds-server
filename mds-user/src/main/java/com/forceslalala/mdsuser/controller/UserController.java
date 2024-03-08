@@ -25,7 +25,8 @@ import java.util.Map;
  */
 
 @RestController
-@RequestMapping("/api/v1/user")
+//@RequestMapping("/api/v1/user")
+@RequestMapping("/user")
 @Api(tags = "医院用户接口")
 public class UserController {
 
@@ -90,4 +91,8 @@ public class UserController {
         return result;
     }
 
+    @GetMapping("/test")
+    public String test(){
+        return "123";
+    }
 }

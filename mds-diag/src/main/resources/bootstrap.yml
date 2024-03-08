@@ -1,4 +1,7 @@
 spring:
+  application:
+    # 应用名称，会在注册中心中显示
+    name: mds-diag
   cloud:
     nacos:
       discovery:
@@ -11,15 +14,6 @@ spring:
         file-extension: yaml # 配置文件格式
         namespace: dev
         extension-configs:
-          - data-id: mds-gateway.yaml
+          - data-id: mds-diag.yaml
             group: DEFAULT_GROUP
             refresh: true
-#    gateway:
-#      routes:
-#        - id: user
-#          #          uri: lb://mds-user
-#          uri: http://127.0.0.1:8081
-#          predicates:
-#            - Path=/user/**
-#          filters:
-#            - StripPrefix=1

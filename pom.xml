@@ -28,6 +28,7 @@
     <module>mds-user</module>
     <module>mds-ai</module>
     <module>mds-gateway</module>
+    <module>mds-diag</module>
   </modules>
 
   <dependencies>

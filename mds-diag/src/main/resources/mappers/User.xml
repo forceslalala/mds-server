@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.forceslalala.mdsuser.dao.UserDao">
+    <resultMap id="User" type="com.forceslalala.mdsuser.entity.User">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="username" property="username" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="CHAR"/>
+        <result column="salt" property="salt" jdbcType="CHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="gender" property="gender" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--    select查询-->
+    <select id="getUserList" resultMap="User">
+        SELECT * FROM `user`
+    </select>
+
+    <select id="getUserByUsername" resultMap="User">
+        SELECT * FROM `user` where `username` = #{username}
+    </select>
+
+    <select id="getById" resultMap="User">
+        SELECT * FROM `user` where `id` = #{id}
+    </select>
+
+    <insert id="add" parameterType="com.forceslalala.mdsuser.entity.User">
+        insert into `user` (username, password, salt, phone, email, gender)
+        values (#{username}, #{password}, #{salt}, #{phone}, #{email}, #{gender})
+    </insert>
+</mapper>
