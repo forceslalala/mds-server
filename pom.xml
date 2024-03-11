@@ -7,7 +7,6 @@
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>2.3.12.RELEASE</version>
-    <relativePath/>
   </parent>
 
   <groupId>com.forceslalala</groupId>
@@ -173,6 +172,30 @@
         <groupId>com.alibaba</groupId>
         <artifactId>fastjson</artifactId>
         <version>1.2.83</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-redis</artifactId>
+        <exclusions>
+          <exclusion>
+            <artifactId>lettuce-core</artifactId>
+            <groupId>io.lettuce</groupId>
+          </exclusion>
+        </exclusions>
+        <version>2.3.12.RELEASE</version>
+      </dependency>
+
+      <dependency>
+        <groupId>redis.clients</groupId>
+        <artifactId>jedis</artifactId>
+        <version>3.3.0</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-pool2</artifactId>
+        <version>2.9.0</version>
       </dependency>
 
     </dependencies>

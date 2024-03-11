@@ -20,17 +20,4 @@ import java.util.List;
 @RequestMapping("/provider")
 @RefreshScope
 public class TestController {
-//    @Value("${user.username}")
-//    private String name;
-//
-//    @Value("${user.age}")
-//    private String age;
-
-    @Value("${blog.data}")
-    private String blogName;
-
-    @GetMapping("/get")
-    public String get() {
-        return "ConfigController#get blog name = " + blogName;
-    }
 }

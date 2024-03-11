@@ -25,8 +25,7 @@ import java.util.Map;
  */
 
 @RestController
-//@RequestMapping("/api/v1/user")
-@RequestMapping("/user")
+@RequestMapping("/api/v1/user")
 @Api(tags = "医院用户接口")
 public class UserController {
 
