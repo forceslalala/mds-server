@@ -28,5 +28,9 @@ public class User {
 
     private String email;
 
+    /**
+     * 0-女
+     * 1-男
+     */
     private int gender;
 }
